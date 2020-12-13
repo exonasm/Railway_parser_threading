@@ -9,9 +9,6 @@ URL = 'https://www.alta.ru'
 proxies = open('proxies').read().split('\n')
 user_agent_list = open('user_agent_list.txt').read().split('\n')
 
-proxy = None
-user_agent = None
-
 container = []
 
 
@@ -74,13 +71,6 @@ def csv_writer(data):
                      data['coordinates']) )
 
 
-def getting_page_all(station):
-	
-	station_url = station['href']
-	info = get_page_info(station_url)
-	print(info)
-
-
 def getting_all_done(precise_railway):
 
 	url = URL + precise_railway['href']
@@ -89,8 +79,8 @@ def getting_all_done(precise_railway):
 	for station in stations:
 		station_url = station['href']
 		info = get_page_info(station_url)
+        # csv_writer(info)
 		print(info)
-	# csv_writer(info)
 
 
 def main():
@@ -100,8 +90,8 @@ def main():
 #	for precise_railway in railways:
 #	 	getting_all_done(precise_railway)
 
-        with concurrent.futures.ThreadPoolExecutor(max_workers=len(railways)) as executor:
-            executor.map(getting_all_done, railways)
+    with concurrent.futures.ThreadPoolExecutor(max_workers=len(railways)) as executor:
+        executor.map(getting_all_done, railways)
     	
 
 if __name__ == '__main__':
