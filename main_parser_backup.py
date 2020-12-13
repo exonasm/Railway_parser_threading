@@ -100,8 +100,8 @@ def main():
 #	for precise_railway in railways:
 #	 	getting_all_done(precise_railway)
 
-	#with concurrent.futures.ThreadPoolExecutor(max_workers=len(railways)) as executor:
-	#	executor.map(getting_all_done, railways)
+        with concurrent.futures.ThreadPoolExecutor(max_workers=len(railways)) as executor:
+            executor.map(getting_all_done, railways)
     	
 
 if __name__ == '__main__':
