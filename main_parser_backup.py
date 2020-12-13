@@ -84,15 +84,15 @@ def getting_all_done(precise_railway):
 
 
 def main():
-	html = get_html(URL + '/railway/')
-	railways = get_railway_list(html)
+    html = get_html(URL + '/railway/')
+    railways = get_railway_list(html)
 
-#	for precise_railway in railways:
-#	 	getting_all_done(precise_railway)
+    #	for precise_railway in railways:
+    #	 	getting_all_done(precise_railway)
 
     with concurrent.futures.ThreadPoolExecutor(max_workers=len(railways)) as executor:
         executor.map(getting_all_done, railways)
-    	
+	
 
 if __name__ == '__main__':
     main()
